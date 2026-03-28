@@ -7,7 +7,7 @@ import { clearPaymentCache } from "@/hooks/usePaymentState";
 
 const AMOUNT = 5700;
 const CBC_AMOUNT = 180000;
-const BANK_NAME = Fairmoney";
+const BANK_NAME = "Fairmoney";
 const ACCOUNT_NUMBER = "2015405431";
 const ACCOUNT_NAME = "Favour Iheikpegbu";
 
