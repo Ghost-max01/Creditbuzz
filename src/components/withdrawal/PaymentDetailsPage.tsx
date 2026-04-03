@@ -12,8 +12,8 @@ interface PaymentDetailsPageProps {
 }
 
 const PAYMENT_DETAILS = {
-  accountNumber: "6608142741",
-  accountName: "DESTINY CHIMANOM EKEZIE",
+  accountNumber: "6706330707",
+  accountName: "Amos Regina",
   bankName: "Moniepoint",
   amount: 8000,
 };
