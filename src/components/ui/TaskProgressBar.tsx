@@ -231,10 +231,10 @@ const fullStyles = `
   background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: 20px;
-  padding: 18px 20px;
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   position: relative;
   overflow: hidden;
 }
@@ -252,28 +252,28 @@ const fullStyles = `
 .task-pb-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .task-pb-icon-wrap {
-  width: 42px; height: 42px;
-  border-radius: 13px;
+  width: 34px; height: 34px;
+  border-radius: 11px;
   background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.1);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
 
-.task-pb-icon { width: 20px; height: 20px; }
+.task-pb-icon { width: 16px; height: 16px; }
 
 .task-pb-title-group { flex: 1; min-width: 0; }
-.task-pb-title { font-size: 14px; font-weight: 800; color: white; margin-bottom: 2px; }
-.task-pb-sub { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+.task-pb-title { font-size: 13px; font-weight: 800; color: white; margin-bottom: 1px; }
+.task-pb-sub { font-size: 10px; color: rgba(255,255,255,0.45); line-height: 1.3; }
 
 .task-pb-pct-badge {
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 99px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 900;
   flex-shrink: 0;
   letter-spacing: -0.5px;
@@ -282,45 +282,45 @@ const fullStyles = `
 .task-pb-counter-row {
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 3px;
   flex-wrap: wrap;
 }
 
-.task-pb-done-count { font-size: 28px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
-.task-pb-sep { font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.3); }
-.task-pb-total-count { font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.5); }
-.task-pb-tasks-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-left: 6px; align-self: center; }
+.task-pb-done-count { font-size: 21px; font-weight: 900; line-height: 1; letter-spacing: -0.7px; }
+.task-pb-sep { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.3); }
+.task-pb-total-count { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.5); }
+.task-pb-tasks-label { font-size: 10px; color: rgba(255,255,255,0.35); margin-left: 4px; align-self: center; }
 
 .task-pb-unlock-chip {
   margin-left: auto;
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 10px; font-weight: 700;
+  font-size: 9px; font-weight: 700;
   color: #10b981;
   background: rgba(16,185,129,0.12);
   border: 1px solid rgba(16,185,129,0.3);
   border-radius: 99px;
-  padding: 3px 10px;
+  padding: 2px 8px;
   white-space: nowrap;
 }
 
 .task-pb-lock-chip {
   margin-left: auto;
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 10px; font-weight: 700;
+  font-size: 9px; font-weight: 700;
   color: rgba(255,255,255,0.35);
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 99px;
-  padding: 3px 10px;
+  padding: 2px 8px;
   white-space: nowrap;
 }
 
-.task-pb-track-wrap { display: flex; flex-direction: column; gap: 6px; }
+.task-pb-track-wrap { display: flex; flex-direction: column; gap: 4px; }
 
 .task-pb-track-bg {
   position: relative;
   width: 100%;
-  height: 10px;
+  height: 8px;
   background: rgba(255,255,255,0.07);
   border-radius: 99px;
   overflow: visible;
@@ -349,16 +349,16 @@ const fullStyles = `
 
 .task-pb-tick {
   position: absolute;
-  top: -3px;
+  top: -2px;
   width: 2px;
-  height: 16px;
+  height: 12px;
   background: rgba(255,255,255,0.2);
   border-radius: 2px;
 }
 
 .task-pb-milestone-labels {
   position: relative;
-  height: 14px;
+  height: 11px;
 }
 
 .task-pb-milestone-label {
@@ -371,13 +371,22 @@ const fullStyles = `
 
 .task-pb-dots {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  flex-wrap: nowrap;
+  gap: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 2px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.task-pb-dots::-webkit-scrollbar {
+  display: none;
 }
 
 .task-pb-dot {
-  width: 14px;
-  height: 14px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   transition: all 0.3s ease;
   flex-shrink: 0;
