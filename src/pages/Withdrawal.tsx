@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Building2, User, Hash, Wallet, Lock, Shield, CheckCircle, Loader2, AlertCircle, ShoppingCart } from "lucide-react";
 import { getTodayCompletedTasks, surveyTasks } from "@/components/TasksSheet";
+import { TaskProgressBar } from "@/components/ui/TaskProgressBar";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
 import { ZenfiLogo } from "@/components/ui/ZenfiLogo";
 import { WithdrawalProcessing } from "@/components/withdrawal/WithdrawalProcessing";
@@ -432,30 +433,15 @@ export const Withdrawal = () => {
       <main className="relative z-10 px-4 pb-8">
         <form onSubmit={handleSubmit} className="space-y-4">
 
-          {/* daily task progress (required) */}
+          {/* Task progress - now with cool component */}
           {(() => {
             const done = getTodayCompletedTasks().length;
             const total = surveyTasks.length;
-            if (done < total) {
-              return (
-                <div className="p-4 mb-4 rounded-2xl animate-fade-in-up"
-                     style={{
-                       background: "hsla(45, 93%, 58%, 0.1)",
-                       border: "1px solid hsla(45, 93%, 58%, 0.2)",
-                     }}>
-                  <p className="text-sm font-medium text-foreground mb-2">
-                    Tasks completed: {done}/{total}
-                  </p>
-                  <div className="w-full bg-muted/20 rounded-full h-2">
-                    <div
-                      className="h-2 bg-teal transition-all"
-                      style={{ width: `${(done/total)*100}%` }}
-                    />
-                  </div>
-                </div>
-              );
-            }
-            return null;
+            return (
+              <div className="animate-fade-in-up mb-2">
+                <TaskProgressBar completed={done} total={total} />
+              </div>
+            );
           })()}
 
           {/* Balance Display Card */}
