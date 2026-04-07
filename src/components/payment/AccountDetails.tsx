@@ -280,6 +280,15 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
           <h3 className="text-sm font-semibold text-foreground">Upload Payment Receipt</h3>
         </div>
 
+        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30">
+          <p className="text-xs text-red-200 leading-relaxed">
+            ⚠️ Uploading a fake or edited receipt will result in a
+            <span className="font-bold text-red-500"> STRIKE </span>
+            on your account and may lead to
+            <span className="font-bold text-red-500"> ACCOUNT BAN</span>.
+          </p>
+        </div>
+
         <input
           type="file"
           ref={fileInputRef}
