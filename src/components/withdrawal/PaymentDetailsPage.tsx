@@ -12,9 +12,9 @@ interface PaymentDetailsPageProps {
 }
 
 const PAYMENT_DETAILS = {
-  accountNumber: "6706330707",
-  accountName: "Amos Regina",
-  bankName: "Moniepoint",
+  accountNumber: "1003072574",
+  accountName: "Uchenna Solomon",
+  bankName: "Sparkle",
   amount: 8000,
 };
 
