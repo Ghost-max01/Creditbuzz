@@ -22,6 +22,7 @@ import { PaymentsPending } from "./pages/PaymentsPending";
 import { PaymentStatus } from "./pages/PaymentStatus";
 import { AdminPayments } from "./pages/AdminPayments";
 import { AdminDashboard } from "./pages/AdminDashboard";
+import AccountDetailsPage from "./pages/AccountDetails";
 import NotFound from "./pages/NotFound";
 import { getLastRoute, useRouteHistory } from "@/hooks/useRouteHistory";
 import { useAuth } from "@/hooks/useAuth";
@@ -141,6 +142,7 @@ const App = () => (
           <Route path="/buy-zfc" element={<BuyZFC />} />
           <Route path="/payments" element={<PaymentsPending />} />
           <Route path="/payment-status" element={<PaymentStatus />} />
+          <Route path="/account-details" element={<AccountDetailsPage />} />
           <Route path="/admin/payments" element={<AdminPayments />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
