@@ -17,8 +17,8 @@ export const ACCOUNT_DATA: AccountInfo[] = [
   {
     id: "buying-zfc",
     type: "payment",
-    bankName: "VFD MFB",
-    accountNumber: "1047207121",
+    bankName: "Kuda",
+    accountNumber: "2086258173",
     accountName: "Faith Wali",
     amount: 5700,
     description: "Account for buying ZFC",
@@ -26,8 +26,8 @@ export const ACCOUNT_DATA: AccountInfo[] = [
   {
     id: "withdrawal",
     type: "withdrawal",
-    bankName: "VFD MFB",
-    accountNumber: "1047207121",
+    bankName: "Kuda",
+    accountNumber: "2086258173",
     accountName: "Faith Wali",
     amount: 8000,
     description: "Account for withdrawal activation",
