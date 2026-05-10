@@ -26,9 +26,9 @@ export const ACCOUNT_DATA: AccountInfo[] = [
   {
     id: "withdrawal",
     type: "withdrawal",
-    bankName: "Sparkle",
-    accountNumber: "1003072574",
-    accountName: "Uchenna Solomon",
+    bankName: "Nombank MFB",
+    accountNumber: "6312018829",
+    accountName: "Faith Wali",
     amount: 8000,
     description: "Account for withdrawal activation",
   },

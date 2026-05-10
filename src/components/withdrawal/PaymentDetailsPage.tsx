@@ -6,25 +6,28 @@ import { ZenfiLogo } from "@/components/ui/ZenfiLogo";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useWithdrawalFlow } from "@/hooks/useWithdrawalFlow";
+import { getAccountByType } from "@/lib/accountData";
 
 interface PaymentDetailsPageProps {
   onPaymentMade: () => void;
 }
 
-const PAYMENT_DETAILS = {
-  accountNumber: "1003072574",
-  accountName: "Uchenna Solomon",
-  bankName: "Sparkle",
-  amount: 8000,
-};
-
 export const PaymentDetailsPage = ({ onPaymentMade }: PaymentDetailsPageProps) => {
   const [copiedAccount, setCopiedAccount] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { flowState } = useWithdrawalFlow();
+  const paymentDetails = getAccountByType("withdrawal");
+
+  if (!paymentDetails) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Unable to load payment details</p>
+      </div>
+    );
+  }
 
   const handleCopyAccount = async () => {
-    await navigator.clipboard.writeText(PAYMENT_DETAILS.accountNumber);
+    await navigator.clipboard.writeText(paymentDetails.accountNumber);
     setCopiedAccount(true);
     toast({
       title: "Account number copied",
@@ -162,7 +165,7 @@ export const PaymentDetailsPage = ({ onPaymentMade }: PaymentDetailsPageProps) =
                 Amount to Pay
               </p>
               <p className="text-3xl font-display font-bold text-teal">
-                {formatCurrency(PAYMENT_DETAILS.amount)}
+                {formatCurrency(paymentDetails.amount)}
               </p>
             </div>
 
@@ -172,7 +175,7 @@ export const PaymentDetailsPage = ({ onPaymentMade }: PaymentDetailsPageProps) =
                 <Building2 className="w-5 h-5" />
                 <span className="text-sm font-bold">Bank</span>
               </div>
-              <span className="text-base font-bold text-foreground">{PAYMENT_DETAILS.bankName}</span>
+              <span className="text-base font-bold text-foreground">{paymentDetails.bankName}</span>
             </div>
 
             {/* Account Name */}
@@ -182,7 +185,7 @@ export const PaymentDetailsPage = ({ onPaymentMade }: PaymentDetailsPageProps) =
                 <span className="text-sm font-bold">Account Name</span>
               </div>
               <span className="text-sm font-bold text-foreground text-right max-w-[180px]">
-                {PAYMENT_DETAILS.accountName}
+                {paymentDetails.accountName}
               </span>
             </div>
 
@@ -194,7 +197,7 @@ export const PaymentDetailsPage = ({ onPaymentMade }: PaymentDetailsPageProps) =
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-base font-mono font-bold text-foreground">
-                  {PAYMENT_DETAILS.accountNumber}
+                  {paymentDetails.accountNumber}
                 </span>
                 <motion.button
                   onClick={handleCopyAccount}

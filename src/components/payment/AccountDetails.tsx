@@ -4,12 +4,9 @@ import { Copy, Check, Upload, Building2, Sparkles, Lock, ImageIcon } from "lucid
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { clearPaymentCache } from "@/hooks/usePaymentState";
+import { getAccountByType } from "@/lib/accountData";
 
-const AMOUNT = 5700;
 const CBC_AMOUNT = 180000;
-const BANK_NAME = "Nombank MFB";
-const ACCOUNT_NUMBER = "6312018829";
-const ACCOUNT_NAME = "Faith Wali";
 
 interface FormData {
   fullName: string;
@@ -30,6 +27,15 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
   const [uploadedFile, setUploadedFile] = useState<string | null>(null);
   const [tempReceiptFile, setTempReceiptFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const paymentAccount = getAccountByType("payment");
+
+  if (!paymentAccount) {
+    return (
+      <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30">
+        <p className="text-xs text-red-200">Unable to load payment account details</p>
+      </div>
+    );
+  }
 
   const handleCopy = async (text: string, field: string) => {
     await navigator.clipboard.writeText(text);
@@ -94,16 +100,7 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
           full_name: formData.fullName,
           phone: formData.phone,
           email: formData.email,
-          amount: 5700,
-          status: "pending",
-        })
-        .select("id")
-        .single();
-
-      if (paymentError) throw paymentError;
-
-      const paymentId = paymentData.id;
-
+            amount: paymentAccount.amount,
       // 2. Clear old payment cache BEFORE navigating to prevent flash of old data
       clearPaymentCache();
 
@@ -180,7 +177,7 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
               </span>
             </div>
             <div className="text-2xl font-bold text-foreground tracking-tight">
-              {formatCurrency(AMOUNT)}
+              {formatCurrency(paymentAccount.amount)}
             </div>
             <div className="text-xs text-muted-foreground mt-1">
               You will receive{" "}
@@ -213,10 +210,10 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs text-muted-foreground block mb-1">Bank Name</span>
-                <span className="font-semibold text-foreground">{BANK_NAME}</span>
+                <span className="font-semibold text-foreground">{paymentAccount.bankName}</span>
               </div>
               <button
-                onClick={() => handleCopy(BANK_NAME, "Bank Name")}
+                onClick={() => handleCopy(paymentAccount.bankName, "Bank Name")}
                 className="p-2.5 rounded-xl bg-secondary/50 hover:bg-secondary transition-all active:scale-95"
               >
                 {copiedField === "Bank Name" ? (
@@ -234,11 +231,11 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
               <div>
                 <span className="text-xs text-muted-foreground block mb-1">Account Number</span>
                 <span className="font-mono font-bold text-lg text-foreground tracking-wider">
-                  {ACCOUNT_NUMBER}
+                  {paymentAccount.accountNumber}
                 </span>
               </div>
               <button
-                onClick={() => handleCopy(ACCOUNT_NUMBER, "Account Number")}
+                onClick={() => handleCopy(paymentAccount.accountNumber, "Account Number")}
                 className="p-2.5 rounded-xl bg-violet/20 hover:bg-violet/30 transition-all active:scale-95"
               >
                 {copiedField === "Account Number" ? (
@@ -255,10 +252,10 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs text-muted-foreground block mb-1">Account Name</span>
-                <span className="font-semibold text-foreground text-sm">{ACCOUNT_NAME}</span>
+                <span className="font-semibold text-foreground text-sm">{paymentAccount.accountName}</span>
               </div>
               <button
-                onClick={() => handleCopy(ACCOUNT_NAME, "Account Name")}
+                onClick={() => handleCopy(paymentAccount.accountName, "Account Name")}
                 className="p-2.5 rounded-xl bg-secondary/50 hover:bg-secondary transition-all active:scale-95"
               >
                 {copiedField === "Account Name" ? (
