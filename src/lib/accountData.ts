@@ -17,7 +17,7 @@ export const ACCOUNT_DATA: AccountInfo[] = [
   {
     id: "buying-zfc",
     type: "payment",
-    bankName: "Kuda",
+    bankName: "Kuda..",
     accountNumber: "2086258173",
     accountName: "Faith Wali",
     amount: 5700,
