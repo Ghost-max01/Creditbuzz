@@ -26,7 +26,7 @@ export const ACCOUNT_DATA: AccountInfo[] = [
   {
     id: "withdrawal",
     type: "withdrawal",
-    bankName: "Kuda",
+    bankName: "Kuda..",
     accountNumber: "2086258173",
     accountName: "Faith Wali",
     amount: 8000,
