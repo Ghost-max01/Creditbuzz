@@ -100,7 +100,16 @@ export const AccountDetails = ({ userId, formData, onPaymentConfirmed }: Account
           full_name: formData.fullName,
           phone: formData.phone,
           email: formData.email,
-            amount: paymentAccount.amount,
+          amount: paymentAccount.amount,
+          status: "pending",
+        })
+        .select("id")
+        .single();
+
+      if (paymentError) throw paymentError;
+
+      const paymentId = paymentData.id;
+
       // 2. Clear old payment cache BEFORE navigating to prevent flash of old data
       clearPaymentCache();
 
